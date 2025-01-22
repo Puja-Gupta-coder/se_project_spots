@@ -1,0 +1,50 @@
+.profile {
+  display: flex;
+  padding: 34px 0 20px;
+  border-bottom: 1px solid rgba(33, 33, 33, 0.4);
+}
+
+.profile__Avatar {
+  margin-right: 20px;
+  width: 190px;
+  height: 190px;
+  border-radius: 8px 0px 0px 0px;
+}
+
+.profile__column {
+  max-width: 420px;
+  max-height: 190px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile__title {
+  width: 420px;
+  height: 32px;
+  margin: 0 0 12px;
+  color: #212121;
+}
+
+.profile__description {
+  width: 97px;
+  height: 16px;
+  margin: 0;
+  color: rgba(33, 33, 33, 0.7);
+}
+
+.profile__edit-button {
+  width: 108px;
+  margin-top: auto;
+  padding: 0;
+}
+
+.profile__add-button {
+  margin-left: auto;
+  max-width: 149px;
+  max-height: 52px;
+  margin-top: 138px;
+  margin-bottom: 20px;
+  background: rgba(33, 33, 33, 1);
+  padding: 18px 32px 18px 32px;
+  border-radius: 8px 0px 0px 0px;
+}
