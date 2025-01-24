@@ -19,7 +19,6 @@ Spot is a Figma project implemented in HTML and CSS. The project showcases a pro
    ```sh
    git clone https://github.com/Puja-Gupta-coder/se_project_spots.git
    ```
-   
 
 ## Semantics and BEM
 
@@ -89,6 +88,5 @@ Spot/
 ├── index.html
 └── README.md
 
-```
-
 [Project overview video link](https://drive.google.com/file/d/1KTPTYnmqMFHMz5rpvooNyCXEhDae0j_P/view?usp=drive_link)
+```
