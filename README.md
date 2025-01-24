@@ -2,9 +2,19 @@
 
 # Spot
 
+An image sharing site
+
 ## Project Description
 
 Spot is a Figma project implemented in HTML and CSS. The project showcases a profile page with a header, main content, and footer. The main content includes a profile section and a section displaying various cards with images and titles.
+
+##Tech Stack
+
+1. HTML
+2. CSS
+3. Git and GitHub
+4. Figma
+5. Web Browsers
 
 ## Features
 
@@ -13,12 +23,13 @@ Spot is a Figma project implemented in HTML and CSS. The project showcases a pro
 - Cards section with images and titles
 - Footer section with project copyright
 
-## Installation
+## Deployment
 
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/Puja-Gupta-coder/se_project_spots.git
-   ```
+This webpage is deployed to github pages.
+
+Deployment link: https://puja-gupta-coder.github.io/se_project_spots/
+
+````
 
 ## Semantics and BEM
 
@@ -43,18 +54,18 @@ Example from the project:
 
 ```html
 <section class="profile page__section">
-  <img src="./images/avatar.jpg" alt="avatar image" class="profile__avatar" />
-  <div class="profile__column">
-    <h2 class="profile__title">Bessie Coleman</h2>
-    <p class="profile__description">Civil Aviator</p>
-    <button class="profile__edit-button">
-      <img src="./images/edit-button.svg" alt="edit button" />Edit Profile
-    </button>
-  </div>
-  <button class="profile__add-button">
-    <img src="./images/add-button.svg" alt="add button" />
-    New Post
-  </button>
+<img src="./images/avatar.jpg" alt="avatar image" class="profile__avatar" />
+<div class="profile__column">
+ <h2 class="profile__title">Bessie Coleman</h2>
+ <p class="profile__description">Civil Aviator</p>
+ <button class="profile__edit-button">
+   <img src="./images/edit-button.svg" alt="edit button" />Edit Profile
+ </button>
+</div>
+<button class="profile__add-button">
+ <img src="./images/add-button.svg" alt="add button" />
+ New Post
+</button>
 </section>
 
 In this example: .profile is the Block. .profile__avatar, .profile__column,
@@ -62,7 +73,7 @@ In this example: .profile is the Block. .profile__avatar, .profile__column,
 .profile__add-button are Elements. *Modifiers could be added to these classes to
 alter their appearance or behavior if needed. By adhering to these principles,
 the project's structure remains clear and maintainable .
-```
+````
 
 ## Project Structure
 
