@@ -75,29 +75,4 @@ alter their appearance or behavior if needed. By adhering to these principles,
 the project's structure remains clear and maintainable .
 ````
 
-## Project Structure
-
-```plaintext
-Spot/
-│
-├── images/
-│   ├── avatar.jpg
-│   ├── logo.svg
-│   ├── add logo.svg
-│   ├── 1-photo-by-moritz-feldmann-from-pexels.jpg
-│   ├── 2-photo-by-ceiline-from-pexels.jpg
-│   ├── 3-photo-by-tubanur-dogan-from-pexels.jpg
-│   ├── 4-photo-by-maurice-laschet-from-pexels.jpg
-│   ├── 5-photo-by-van-anh-nguyen-from-pexels.jpg
-│   ├── 6-photo-by-moritz-feldmann-from-pexels.jpg
-│   └── Group 2.svg
-│
-├── pages/
-│   └── index.css
-│
-├── favicon.ico
-├── index.html
-└── README.md
-
 [Project overview video link](https://drive.google.com/file/d/1KTPTYnmqMFHMz5rpvooNyCXEhDae0j_P/view?usp=drive_link)
-```
