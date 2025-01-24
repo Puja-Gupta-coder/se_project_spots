@@ -94,4 +94,23 @@ Spot/
 
 ```
 
+System Requirements
+To run and view this HTML project, you'll need the following:
+
+Web Browser:
+
+1 2A modern web browser (e.g., Google Chrome, Mozilla Firefox, Microsoft Edge, Safari) that supports HTML5 and CSS3.
+
+Local Development Environment:
+
+2 A code editor (e.g., Visual Studio Code, Sublime Text, Atom) for editing HTML and CSS files.
+
+Git (optional) for version control and pushing code to a repository.
+
+3 Internet Connection:
+
+Required for accessing online resources, images, and deploying the project to a web hosting service.
+
+These instructions should help you set up, view, and deploy your project successfully.
+
 [Project overview video link](https://drive.google.com/file/d/1KTPTYnmqMFHMz5rpvooNyCXEhDae0j_P/view?usp=drive_link)
