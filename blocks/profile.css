@@ -111,26 +111,14 @@
   .profile__title {
     margin: 0 0 6px;
     font-size: 20px;
-    line-height: 1;
     text-align: center;
-    max-width: 288px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
     max-width: 288px;
   }
 
   .profile__description {
     max-width: 288px;
-    font-size: 16px;
-    line-height: 1;
     margin: 0 auto;
     text-align: center;
-    max-width: 288px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    max-width: 288px;
   }
 
   .profile__edit-button {
