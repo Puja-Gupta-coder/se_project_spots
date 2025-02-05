@@ -29,3 +29,19 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
   },
 ];
+
+const editButton = document.querySelector(".profile__edit-button");
+const editModal = document.querySelector("#edit-modal");
+const closeButton = editModal.querySelector(".modal__button-close");
+
+function handleEditButton() {
+  editModal.classList.add("modal_opened");
+  console.log(editModal.classList);
+}
+function handlecloseButton() {
+  editModal.classList.remove("modal_opened");
+  console.log(editModal.classList);
+}
+
+editButton.addEventListener("click", handleEditButton);
+closeButton.addEventListener("click", handlecloseButton);
