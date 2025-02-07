@@ -74,7 +74,7 @@ function handleSubmitButton(evt) {
   profileJobElement.textContent = jobInput.value;
 }
 
-submitButton.addEventListener("click", handleSubmitButton);
+modalForm.addEventListener("submit", handleSubmitButton);
 
 for (let i = 0; i < initialCards.length; i++) {
   const cardElement = getCardElement(initialCards[i]);
