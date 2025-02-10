@@ -34,7 +34,7 @@ const editButton = document.querySelector(".profile__edit-button");
 const editModal = document.querySelector("#edit-modal");
 const closeButton = editModal.querySelector(".modal__button-close");
 const submitButton = editModal.querySelector(".modal__button-submit");
-const modalForm = document.querySelector(".modal__form");
+const modalForm = document.querySelector("#profile-form");
 const profileFormElement = document.querySelector(".profile__column");
 const profileNameElement = profileFormElement.querySelector(".profile__title");
 const profileJobElement = profileFormElement.querySelector(
@@ -53,6 +53,7 @@ function getCardElement(data) {
   const cardImage = cardElement.querySelector(".card__image");
   cardTitle.textContent = data.name;
   cardImage.src = data.link;
+  cardImage.alt = data.name;
   return cardElement;
 }
 function handleEditButton() {
@@ -61,20 +62,20 @@ function handleEditButton() {
   jobInput.value = profileJobElement.textContent;
 }
 
-function handleCloseButton() {
+function closeModal() {
   editModal.classList.remove("modal_opened");
 }
 editButton.addEventListener("click", handleEditButton);
-closeButton.addEventListener("click", handleCloseButton);
+closeButton.addEventListener("click", closeModal);
 
-function handleSubmitButton(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   editModal.classList.remove("modal_opened");
   profileNameElement.textContent = nameInput.value;
   profileJobElement.textContent = jobInput.value;
 }
 
-modalForm.addEventListener("submit", handleSubmitButton);
+modalForm.addEventListener("submit", handleProfileFormSubmit);
 
 for (let i = 0; i < initialCards.length; i++) {
   const cardElement = getCardElement(initialCards[i]);
