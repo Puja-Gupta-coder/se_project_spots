@@ -38,7 +38,8 @@
           <ul class="cards__list">
             <template id="card-template">
               <li class="card">
-                <img src="" alt="" class="card__image" />
+                <img src="" alt="" class="card__image card__image_opened" />
+                <button type="button" class="card__delete-button"></button>
                 <div class="card__content">
                   <h2 class="card__title"></h2>
                   <button type="button" class="card__like-button"></button>
@@ -78,6 +79,56 @@
             </label>
             <button type="submit" class="modal__button-submit">Save</button>
           </form>
+        </div>
+      </div>
+      <div class="modal" id="edit-card-modal">
+        <div class="modal__container">
+          <button
+            type="button"
+            id="link-button-close"
+            class="modal__button-close"
+          >
+            <img src="./images/Group27.svg" alt="close form" />
+          </button>
+          <h2 class="modal__title">New post</h2>
+          <form id="card-form" class="modal__form">
+            <label for="image-link" class="modal__label"
+              >Image-link
+              <input
+                type="url"
+                id="image-link"
+                class="modal__input"
+                placeholder="Paste a link to the picture"
+              />
+            </label>
+            <label for="caption" class="modal__label"
+              >Caption
+              <input
+                type="text"
+                id="caption"
+                class="modal__input"
+                placeholder="Type your caption"
+              />
+            </label>
+            <button type="submit" class="modal__button-submit">Save</button>
+          </form>
+        </div>
+      </div>
+      <div class="modal modal_is-opened" id="modal-profile-preview">
+        <div class="modal__container modal__container_type_preview">
+          <button
+            type="button"
+            id="preview-button-close"
+            class="modal__button-close modal__button-close_type_preview"
+          >
+            <img src="./images/Close_Icon_preview.svg" alt="close form" />
+          </button>
+          <img
+            class="modal__image"
+            src=" https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg"
+            alt="Image preview"
+          />
+          <p class="modal__caption">Val Thorens</p>
         </div>
       </div>
     </div>
