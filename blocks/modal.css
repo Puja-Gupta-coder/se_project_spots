@@ -172,12 +172,12 @@
   .modal__container_type_preview {
     display: flex;
     flex-direction: column;
+    padding: 6px;
   }
 
   .modal__image {
     border-radius: 4px;
     max-width: 100%;
-    max-height: 60vh;
     position: relative;
   }
 
