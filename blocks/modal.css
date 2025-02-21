@@ -67,6 +67,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: 0.4;
 }
 .modal__button-close_type_preview:hover {
   border: solid 4px rgba(160, 32, 240, 1);
@@ -189,7 +190,13 @@
   .modal__button-close_type_preview {
     position: absolute;
     top: -32px;
+    background-color: black;
+    opacity: 1;
   }
+
+  .modal__button-close_type_preview:hover {
+    border: solid 4px rgba(160, 32, 240, 1);
+  } /* This hover isn't working nicely, help me with this*/
 
   .modal__title {
     margin: 10px 0 24px;

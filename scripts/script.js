@@ -35,16 +35,20 @@ const modal = document.querySelector(".modal");
 const editModal = document.querySelector("#edit-modal");
 const closeButton = editModal.querySelector(".modal__button-close");
 const submitButton = editModal.querySelector(".modal__button-submit");
-const modalForm = document.querySelector("#profile-form");
-const profileFormElement = document.querySelector(".profile__column");
-const profileNameElement = profileFormElement.querySelector(".profile__title");
-const profileJobElement = profileFormElement.querySelector(
-  ".profile__description"
-);
-const nameInput = modalForm.querySelector("#name");
-const jobInput = modalForm.querySelector("#description");
+const profileForm = document.querySelector("#profile-form");
+const profile = document.querySelector(".profile__column");
+const profileNameElement = profile.querySelector(".profile__title");
+const profileJobElement = profile.querySelector(".profile__description");
+const nameInput = profileForm.querySelector("#name");
+const jobInput = profileForm.querySelector("#description");
 const cardTemplate = document.querySelector("#card-template");
 const cardList = document.querySelector(".cards__list");
+const editModalButton = document.querySelector(".profile__add-button");
+const modalVisible = document.querySelector("#edit-card-modal");
+const closeButtonLinkForm = document.querySelector("#link-button-close");
+const cardForm = document.querySelector("#card-form");
+const cardLinkInput = document.querySelector("#image-link");
+const cardTitleInput = document.querySelector("#caption");
 
 function getCardElement(data) {
   const cardElement = cardTemplate.content
@@ -64,19 +68,21 @@ function getCardElement(data) {
   cardLikeButton.addEventListener("click", () => {
     cardLikeButton.classList.toggle("card__like-button_liked");
   });
+
   cardDeleteButton.addEventListener("click", () => {
-    cardDeleteButton.classList.toggle("card__delete-button_clicked");
+    cardElement.remove();
   });
 
   cardImage.addEventListener("click", () => {
     openModal(modalPreview);
     modalImage.src = data.link;
+    modalImage.alt = data.name;
     previewTitle.textContent = data.name;
   });
 
   previewButtonClose.addEventListener("click", () => {
     closeModal(modalPreview);
-  });
+  }); /* I am not able to resolve this. I asked help at discord but still not resolved*/
 
   return cardElement;
 }
@@ -105,31 +111,27 @@ function handleProfileFormSubmit(evt) {
   profileJobElement.textContent = jobInput.value;
 }
 
-modalForm.addEventListener("submit", handleProfileFormSubmit);
+profileForm.addEventListener("submit", handleProfileFormSubmit);
 
 initialCards.forEach((card) => {
   const cardElement = getCardElement(card);
   cardList.append(cardElement);
 });
 
-const editModalButton = document.querySelector(".profile__add-button");
-const modalVisible = document.querySelector("#edit-card-modal");
-const closeButtonLinkForm = document.querySelector("#link-button-close");
-const cardForm = document.querySelector("#card-form");
-const cardLinkInput = document.querySelector("#image-link");
-const cardTitleInput = document.querySelector("#caption");
-
-function cardLinkFormSubmit(evt) {
+function handleCardFormSubmit(evt) {
   evt.preventDefault();
   closeModal(modalVisible);
   const inputValues = {
     name: cardTitleInput.value,
     link: cardLinkInput.value,
   };
+  evt.target.reset();
+  closeModal(cardForm);
+
   const cardEl = getCardElement(inputValues);
   cardList.prepend(cardEl);
 }
 
 editModalButton.addEventListener("click", () => openModal(modalVisible));
 closeButtonLinkForm.addEventListener("click", () => closeModal(modalVisible));
-cardForm.addEventListener("submit", cardLinkFormSubmit);
+cardForm.addEventListener("submit", handleCardFormSubmit);

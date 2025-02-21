@@ -52,6 +52,7 @@
 .card__like-button_liked {
   background-image: url(../images/liked_button.svg);
   opacity: 1;
+  background-color: transparent;
 }
 
 .card__like-button_liked:hover {
@@ -70,7 +71,7 @@
   background-color: transparent;
 }
 
-.card__delete-button_clicked {
+.card__delete-button:hover {
   background-image: url(../images/Delete_Icon_clicked.svg);
 }
 
