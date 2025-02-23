@@ -53,10 +53,12 @@
   background-image: url(../images/liked_button.svg);
   opacity: 1;
   background-color: transparent;
+  padding: 0;
 }
 
 .card__like-button_liked:hover {
-  background-image: url(../images/likedbutton_hover.svg);
+  background-image: url(../images/liked_button_hoverN.svg);
+  background-color: transparent;
 }
 
 .card__delete-button {

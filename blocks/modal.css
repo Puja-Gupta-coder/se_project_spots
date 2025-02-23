@@ -190,8 +190,8 @@
   .modal__button-close_type_preview {
     position: absolute;
     top: -32px;
-    background-color: black;
     opacity: 1;
+    right: -3px;
   }
 
   .modal__button-close_type_preview:hover {
