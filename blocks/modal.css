@@ -110,6 +110,10 @@
   border-radius: 8px;
 }
 
+.modal__button-submit_inactive {
+  opacity: 50%;
+}
+
 .modal__input {
   width: 100%;
   height: 52px;
@@ -121,6 +125,14 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 1;
+  display: block;
+}
+
+.modal__input_type_error {
+  border: 1px solid rgba(255, 0, 0, 0.6);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 110.00000000000001%;
 }
 
 .modal__input:hover {
@@ -135,6 +147,13 @@
   color: #212121;
   opacity: 30%;
 }
+
+.modal__error {
+  color: red;
+  margin-top: 8px;
+  display: block;
+}
+
 .modal__image {
   max-width: 80vw;
   max-height: 80vh;

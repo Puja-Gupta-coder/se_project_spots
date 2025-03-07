@@ -54,6 +54,7 @@ const addCardCloseButton = document.querySelector("#link-button-close");
 const addCardForm = document.querySelector("#card-form");
 const cardLinkInput = document.querySelector("#image-link");
 const cardTitleInput = document.querySelector("#caption");
+const cardSubmitButton = document.querySelector(".modal__button-submit");
 
 const imagePreviewModal = document.querySelector("#modal-profile-preview");
 const previewTitle = document.querySelector(".modal__caption");
@@ -107,6 +108,7 @@ function handleEditButton() {
   openModal(profileEditModal);
   nameInput.value = profileNameElement.textContent;
   jobInput.value = profileJobElement.textContent;
+  resetValidation(profileForm, [nameInput, jobInput], settings);
 }
 
 profileEditButton.addEventListener("click", handleEditButton);
@@ -136,6 +138,7 @@ function handleCardFormSubmit(evt) {
     link: cardLinkInput.value,
   };
   evt.target.reset();
+  disableButton(cardSubmitButton, settings);
 
   const cardEl = getCardElement(inputValues);
   cardList.prepend(cardEl);
