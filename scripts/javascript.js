@@ -34,7 +34,7 @@ const hasValidInput = (inputList, config) => {
 };
 
 const toggleButtonState = (inputList, buttonEl, config) => {
-  if (hasValidInput(inputList)) {
+  if (hasValidInput(inputList, config)) {
     disableButton(buttonEl, config);
   } else {
     buttonEl.disabled = false;
@@ -49,7 +49,7 @@ const disableButton = (buttonEl, config) => {
 
 const resetValidation = (formEl, inputList, config) => {
   inputList.forEach((input) => {
-    hideInputError(formEl, input);
+    hideInputError(formEl, input, config);
   });
 };
 
@@ -62,6 +62,7 @@ const setEventListener = (formEl, config) => {
       toggleButtonState(inputList, formButton, config);
     });
   });
+  toggleButtonState(inputList, formButton, config);
 };
 
 const enableValidation = (config) => {
@@ -88,6 +89,9 @@ document.addEventListener("keyup", handleEscape);
 function handleEscape(evt) {
   if (evt.key === "Escape") {
     const activePopup = document.querySelector(".modal_is-opened");
-    closeModal(activePopup);
+    console.log("Active Popup:", activePopup);
+    if (activePopup) {
+      closeModal(activePopup);
+    }
   }
 }

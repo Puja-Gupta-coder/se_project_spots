@@ -137,9 +137,8 @@ function handleCardFormSubmit(evt) {
     name: cardTitleInput.value,
     link: cardLinkInput.value,
   };
-  evt.target.reset();
+  addCardForm.reset();
   disableButton(cardSubmitButton, settings);
-
   const cardEl = getCardElement(inputValues);
   cardList.prepend(cardEl);
 }
