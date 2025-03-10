@@ -98,6 +98,9 @@ imagePreviewCloseButton.addEventListener("click", () => {
 
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
+  const form = modal.querySelector(".modal__form");
+  const submitButton = form.querySelector(settings.submitButtonSelector);
+  disableButton(submitButton, settings);
 }
 
 function closeModal(modal) {
