@@ -55,14 +55,14 @@ const resetValidation = (formEl, inputList, config) => {
 
 const setEventListener = (formEl, config) => {
   const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
-  const formButton = formEl.querySelector(config.submitButtonSelector);
+  const buttonElement = formEl.querySelector(config.submitButtonSelector);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
       checkInputValidity(formEl, inputElement, config);
-      toggleButtonState(inputList, formButton, config);
+      toggleButtonState(inputList, buttonElement, config);
     });
   });
-  toggleButtonState(inputList, formButton, config);
+  toggleButtonState(inputList, buttonElement, config);
 };
 
 const enableValidation = (config) => {
@@ -73,25 +73,3 @@ const enableValidation = (config) => {
 };
 
 enableValidation(settings);
-
-const closeModalByOverlayClick = (event) => {
-  if (event.target.classList.contains("modal")) {
-    closeModal(event.target);
-  }
-};
-
-document.querySelectorAll(".modal").forEach((modal) => {
-  modal.addEventListener("click", closeModalByOverlayClick);
-});
-
-document.addEventListener("keyup", handleEscape);
-
-function handleEscape(evt) {
-  if (evt.key === "Escape") {
-    const activePopup = document.querySelector(".modal_is-opened");
-    console.log("Active Popup:", activePopup);
-    if (activePopup) {
-      closeModal(activePopup);
-    }
-  }
-}

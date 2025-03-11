@@ -99,8 +99,8 @@ imagePreviewCloseButton.addEventListener("click", () => {
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
   const form = modal.querySelector(".modal__form");
-  const submitButton = form.querySelector(settings.submitButtonSelector);
-  disableButton(submitButton, settings);
+  const cardSubmitButton = addCardForm.querySelector(".modal__button-submit");
+  disableButton(cardSubmitButton, settings);
 }
 
 function closeModal(modal) {
@@ -149,3 +149,25 @@ function handleCardFormSubmit(evt) {
 addCardButton.addEventListener("click", () => openModal(addCardModal));
 addCardCloseButton.addEventListener("click", () => closeModal(addCardModal));
 addCardForm.addEventListener("submit", handleCardFormSubmit);
+
+const closeModalByOverlayClick = (event) => {
+  if (event.target.classList.contains("modal")) {
+    closeModal(event.target);
+  }
+};
+
+document.querySelectorAll(".modal").forEach((modal) => {
+  modal.addEventListener("click", closeModalByOverlayClick);
+});
+
+document.addEventListener("keyup", handleEscape);
+
+function handleEscape(evt) {
+  if (evt.key === "Escape") {
+    const activePopup = document.querySelector(".modal_is-opened");
+    console.log("Active Popup:", activePopup);
+    if (activePopup) {
+      closeModal(activePopup);
+    }
+  }
+}
