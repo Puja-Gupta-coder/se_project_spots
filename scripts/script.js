@@ -98,9 +98,6 @@ imagePreviewCloseButton.addEventListener("click", () => {
 
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
-  const form = modal.querySelector(".modal__form");
-  const cardSubmitButton = addCardForm.querySelector(".modal__button-submit");
-  disableButton(cardSubmitButton, settings);
 }
 
 function closeModal(modal) {
@@ -160,8 +157,6 @@ document.querySelectorAll(".modal").forEach((modal) => {
   modal.addEventListener("click", closeModalByOverlayClick);
 });
 
-document.addEventListener("keyup", handleEscape);
-
 function handleEscape(evt) {
   if (evt.key === "Escape") {
     const activePopup = document.querySelector(".modal_is-opened");
@@ -170,4 +165,13 @@ function handleEscape(evt) {
       closeModal(activePopup);
     }
   }
+}
+function openModal(modal) {
+  modal.classList.add("modal_is-opened");
+  document.addEventListener("keyup", handleEscape);
+}
+
+function closeModal(modal) {
+  modal.classList.remove("modal_is-opened");
+  document.removeEventListener("keyup", handleEscape);
 }
