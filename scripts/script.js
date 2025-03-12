@@ -96,14 +96,6 @@ imagePreviewCloseButton.addEventListener("click", () => {
   closeModal(imagePreviewModal);
 });
 
-function openModal(modal) {
-  modal.classList.add("modal_is-opened");
-}
-
-function closeModal(modal) {
-  modal.classList.remove("modal_is-opened");
-}
-
 function handleEditButton() {
   openModal(profileEditModal);
   nameInput.value = profileNameElement.textContent;
