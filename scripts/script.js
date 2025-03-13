@@ -54,7 +54,7 @@ const addCardCloseButton = document.querySelector("#link-button-close");
 const addCardForm = document.querySelector("#card-form");
 const cardLinkInput = document.querySelector("#image-link");
 const cardTitleInput = document.querySelector("#caption");
-const cardSubmitButton = document.querySelector(".modal__button-submit");
+const cardSubmitButton = addCardModal.querySelector(".modal__button-submit");
 
 const imagePreviewModal = document.querySelector("#modal-profile-preview");
 const previewTitle = document.querySelector(".modal__caption");
