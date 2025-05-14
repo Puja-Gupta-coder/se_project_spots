@@ -94,7 +94,7 @@
               />
               <span id="description-error" class="modal__error"
                 >Please lengthen this text to 2 characters or more (you are
-                currently usina 1 character).</span
+                currently using 1 character).</span
               >
             </label>
             <button type="submit" class="modal__button-submit">Save</button>
@@ -169,7 +169,35 @@
             >avatar
             <input
               type="text"
-              id="edit-avatar-form"
+              id="profile-avatar-input"
+              class="modal__input"
+              name="avatar"
+              placeholder="Name"
+              minlength="2"
+              maxlength="40"
+              required
+            />
+            <span id="profile-avatar-input-error" class="modal__error"
+              >Please fill out this field.</span
+            >
+          </label>
+
+          <button type="submit" class="modal__button-submit">Save</button>
+        </form>
+      </div>
+    </div>
+    <div class="modal" id="avatar-modal">
+      <div class="modal__container">
+        <button type="button" class="modal__button-close">
+          <img src="./images/Group27.svg" alt="close form" />
+        </button>
+        <h2 class="modal__title">Edit avatar</h2>
+        <form id="edit-avatar-form" class="modal__form">
+          <label for="profile-avatar-input" class="modal__label"
+            >avatar
+            <input
+              type="text"
+              id="profile-avatar-input"
               class="modal__input"
               name="avatar"
               placeholder="Name"

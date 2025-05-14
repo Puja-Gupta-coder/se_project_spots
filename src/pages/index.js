@@ -1,7 +1,9 @@
-import "../images/avatar.jpg";
-import "../images/Group.svg";
-import "../images/add-logo.svg";
-import "../images/Group27.svg";
+import "../images/logo.svg"; // Add this
+import "../images/avatar.jpg"; // Already exists
+import "../images/Group2.svg"; // Already exists
+import "../images/Group.svg"; // Add this
+import "../images/add-logo.svg"; // Already exists
+import "../images/Group27.svg"; // Already exists
 import "../images/Close_Icon_preview.svg";
 
 import "./index.css";
@@ -39,7 +41,10 @@ import Api from "../utils/Api.js";
 //     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
 //   },
 // ];
+const avatarModalBtn = document.querySelector(".profile__avatar-btn");
+const avatarModal = document.querySelector("#avatar-modal");
 const profileAvatar = document.querySelector(".profile__avatar");
+const avatarCloseButton = avatarModal.querySelector(".modal__button-close");
 const profileForm = document.querySelector("#profile-form");
 const profile = document.querySelector(".profile__column");
 const profileNameElement = profile.querySelector(".profile__title");
@@ -165,15 +170,23 @@ profileForm.addEventListener("submit", handleProfileFormSubmit);
 
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
-  closeModal(addCardModal);
-  const inputValues = {
-    name: cardTitleInput.value,
-    link: cardLinkInput.value,
-  };
-  addCardForm.reset();
-  disableButton(cardSubmitButton, settings);
-  const cardEl = getCardElement(inputValues);
-  cardList.prepend(cardEl);
+  const submitButton = addCardForm.querySelector(".modal__button");
+  disableButton(submitButton);
+
+  api
+    .addCard({ name: cardTitleInput.value, link: cardLinkInput.value })
+    .then((card) => {
+      const cardElement = getCardElement(card);
+      cardList.prepend(cardElement);
+      closeModal(addCardModal);
+      addCardForm.reset();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      enableButton(submitButton);
+    });
 }
 
 addCardButton.addEventListener("click", () => openModal(addCardModal));
@@ -182,6 +195,7 @@ addCardForm.addEventListener("submit", handleCardFormSubmit);
 // select avatar modal button at the top of page
 //
 avatarModalBtn.addEventListener("click", () => openModal(avatarModal));
+avatarCloseButton.addEventListener("click", () => closeModal(avatarModal));
 
 const closeModalByOverlayClick = (event) => {
   if (event.target.classList.contains("modal")) {
