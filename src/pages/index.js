@@ -1,34 +1,72 @@
-const initialCards = [
-  {
-    name: "Val Thorens",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
+import "../images/avatar.jpg";
+import "../images/Group.svg";
+import "../images/add-logo.svg";
+import "../images/Group27.svg";
+import "../images/Close_Icon_preview.svg";
 
-  {
-    name: "Restaurant terrace",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
-  },
+import "./index.css";
+import { enableValidation, settings } from "../scripts/validation.js";
+import Api from "../utils/Api.js";
 
-  {
-    name: "An outdoor cafe",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
-  },
+// const initialCards = [
+//   {
+//     name: "Val Thorens",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
+//   },
 
-  {
-    name: "A very long bridge, over the forest and through the trees",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
-  },
+//   {
+//     name: "Restaurant terrace",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
+//   },
 
-  {
-    name: "Tunnel with morning light",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
-  },
+//   {
+//     name: "An outdoor cafe",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
+//   },
 
-  {
-    name: "Mountain house",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
+//   {
+//     name: "A very long bridge, over the forest and through the trees",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
+//   },
+
+//   {
+//     name: "Tunnel with morning light",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
+//   },
+
+//   {
+//     name: "Mountain house",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
+//   },
+// ];
+const profileAvatar = document.querySelector(".profile__avatar");
+const profileForm = document.querySelector("#profile-form");
+const profile = document.querySelector(".profile__column");
+const profileNameElement = profile.querySelector(".profile__title");
+const profileJobElement = profile.querySelector(".profile__description");
+const nameInput = profileForm.querySelector("#name");
+const jobInput = profileForm.querySelector("#description");
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "65d2d68a-31c1-4ecb-b4a7-2d6c51714b93",
+    "Content-Type": "application/json",
   },
-];
+});
+
+api
+  .getAppInfo()
+  .then(([userData, cards]) => {
+    profileAvatar.src = userData.avatar;
+    profileNameElement.textContent = userData.name;
+    profileJobElement.textContent = userData.about;
+
+    cards.forEach((item) => {
+      const cardElement = getCardElement(item);
+      cardList.append(cardElement);
+    });
+  })
+  .catch(console.error);
 
 const profileEditButton = document.querySelector(".profile__edit-button");
 const profileEditModal = document.querySelector("#edit-modal");
@@ -38,12 +76,6 @@ const profileCloseButton = profileEditModal.querySelector(
 const profileSubmitButton = profileEditModal.querySelector(
   ".modal__button-submit"
 );
-const profileForm = document.querySelector("#profile-form");
-const profile = document.querySelector(".profile__column");
-const profileNameElement = profile.querySelector(".profile__title");
-const profileJobElement = profile.querySelector(".profile__description");
-const nameInput = profileForm.querySelector("#name");
-const jobInput = profileForm.querySelector("#description");
 
 const cardTemplate = document.querySelector("#card-template");
 const cardList = document.querySelector(".cards__list");
@@ -69,6 +101,7 @@ function getCardElement(data) {
   const cardImage = cardElement.querySelector(".card__image");
   const cardLikeButton = cardElement.querySelector(".card__like-button");
   const cardDeleteButton = cardElement.querySelector(".card__delete-button");
+  // avatar element
 
   cardTitle.textContent = data.name;
   cardImage.src = data.link;
@@ -110,17 +143,25 @@ profileCloseButton.addEventListener("click", () =>
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-  closeModal(profileEditModal);
-  profileNameElement.textContent = nameInput.value;
-  profileJobElement.textContent = jobInput.value;
+
+  const data = {
+    name: nameInput.value,
+    about: jobInput.value,
+  };
+
+  api
+    .editUserInfo(data)
+    .then((res) => {
+      profileNameElement.textContent = res.name;
+      profileJobElement.textContent = res.about;
+      closeModal(profileEditModal);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 }
 
 profileForm.addEventListener("submit", handleProfileFormSubmit);
-
-initialCards.forEach((card) => {
-  const cardElement = getCardElement(card);
-  cardList.append(cardElement);
-});
 
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
@@ -138,6 +179,9 @@ function handleCardFormSubmit(evt) {
 addCardButton.addEventListener("click", () => openModal(addCardModal));
 addCardCloseButton.addEventListener("click", () => closeModal(addCardModal));
 addCardForm.addEventListener("submit", handleCardFormSubmit);
+// select avatar modal button at the top of page
+//
+avatarModalBtn.addEventListener("click", () => openModal(avatarModal));
 
 const closeModalByOverlayClick = (event) => {
   if (event.target.classList.contains("modal")) {
@@ -167,3 +211,5 @@ function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
   document.removeEventListener("keyup", handleEscape);
 }
+
+enableValidation(settings);
