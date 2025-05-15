@@ -7,7 +7,11 @@ import "../images/Group27.svg"; // Already exists
 import "../images/Close_Icon_preview.svg";
 
 import "./index.css";
-import { enableValidation, settings } from "../scripts/validation.js";
+import {
+  enableValidation,
+  settings,
+  disableButton,
+} from "../scripts/validation.js";
 import Api from "../utils/Api.js";
 
 // const initialCards = [
@@ -41,6 +45,9 @@ import Api from "../utils/Api.js";
 //     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
 //   },
 // ];
+const deleteForm = document.querySelector("#delete-form");
+const deleteModal = document.querySelector("#delete-modal");
+const deleteCloseButton = deleteModal.querySelector(".modal__close");
 const avatarModalBtn = document.querySelector(".profile__avatar-btn");
 const avatarModal = document.querySelector("#avatar-modal");
 const profileAvatar = document.querySelector(".profile__avatar");
@@ -107,7 +114,7 @@ function getCardElement(data) {
   const cardLikeButton = cardElement.querySelector(".card__like-button");
   const cardDeleteButton = cardElement.querySelector(".card__delete-button");
   // avatar element
-
+  cardElement.dataset.cardId = data._id;
   cardTitle.textContent = data.name;
   cardImage.src = data.link;
   cardImage.alt = data.name;
@@ -117,7 +124,9 @@ function getCardElement(data) {
   });
 
   cardDeleteButton.addEventListener("click", () => {
-    cardElement.remove();
+    openModal(deleteModal);
+    deleteModal.dataset.cardId = data._id;
+    deleteModal.dataset.cardElement = cardElement;
   });
 
   cardImage.addEventListener("click", () => {
@@ -129,6 +138,22 @@ function getCardElement(data) {
 
   return cardElement;
 }
+deleteCloseButton.addEventListener("click", () => closeModal(deleteModal));
+deleteForm.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+  const cardId = deleteModal.dataset.cardId;
+  const cardElement = document.querySelector(`[data-card-id="${cardId}"]`);
+
+  api
+    .deleteCard(cardId)
+    .then(() => {
+      cardElement.remove();
+      closeModal(deleteModal);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+});
 
 imagePreviewCloseButton.addEventListener("click", () => {
   closeModal(imagePreviewModal);
@@ -173,20 +198,12 @@ function handleCardFormSubmit(evt) {
   const submitButton = addCardForm.querySelector(".modal__button");
   disableButton(submitButton);
 
-  api
-    .addCard({ name: cardTitleInput.value, link: cardLinkInput.value })
-    .then((card) => {
-      const cardElement = getCardElement(card);
-      cardList.prepend(cardElement);
-      closeModal(addCardModal);
-      addCardForm.reset();
-    })
-    .catch((err) => {
-      console.error(err);
-    })
-    .finally(() => {
-      enableButton(submitButton);
-    });
+  api.addCard(inputValues).then((res) => {
+    const cardEl = getCardElement(res);
+    cardList.prepend(cardEl);
+    addCardForm.reset();
+    disableButton(cardSubmitButton, settings);
+  });
 }
 
 addCardButton.addEventListener("click", () => openModal(addCardModal));
