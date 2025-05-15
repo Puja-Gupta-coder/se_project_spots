@@ -11,7 +11,6 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "main.js",
     publicPath: "",
-    assetModuleFilename: "images/[name][ext]", // Add this line
   },
 
   mode: "development",
@@ -31,7 +30,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: "babel-loader",
-        exclude: /node_modules/,
+        exclude: "/node_modules/",
       },
       {
         test: /\.css$/,
@@ -47,15 +46,15 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|svg|jpg|jpeg|webp|gif|ico|woff(2)?|eot|ttf|otf)$/,
+        test: /\.(png|svg|jpg|jpeg|webp|gif|woff(2)?|eot|ttf|otf)$/,
         type: "asset/resource",
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      favicon: "./src/images/favicon.ico",
       template: "./src/index.html",
+      favicon: "./src/images/favicon.ico",
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
