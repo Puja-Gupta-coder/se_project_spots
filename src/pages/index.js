@@ -109,7 +109,6 @@ function handleProfileFormSubmit(evt) {
         profileName.textContent = data.name;
         profileDesc.textContent = data.about;
         toggleProfileModal();
-        evt.preventDefault();
       });
   }
 
@@ -120,6 +119,7 @@ function handleAvatarSubmit(evt) {
   function makeRequest() {
     return myApi.editAvatarInfo({ avatar: avatarInput.value }).then((data) => {
       avatarImage.src = data.avatar;
+      disableButton(evt.submitter, settings);
       toggleModal(avatarModal);
     });
   }
@@ -158,7 +158,6 @@ function handleNewPostFormSubmit(evt) {
         renderCard(card);
         toggleModal(newPostModal);
         disableButton(buttonElement, settings);
-        evt.target.reset();
       });
   }
 
